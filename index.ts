@@ -1,13 +1,15 @@
 /* eslint-disable no-console */
 
 import * as jp from "jsonpath";
+import * as _ from "lodash"
 import payload from "./payload";
 
 const jsonPaths: Array<string> = [
     // '$',
     // '$.level_0_string',
-    '$.level_0_array[:]',
-    '$.level_0_array[:]',
+    '$.name',
+    '$.description',
+    '$.packages[:].tour.itinerary',
     // '$.*'
 ];
 
@@ -18,13 +20,12 @@ jsonPaths.forEach((jpPath) => {
     allPaths.push(...paths)
 });
 
-const orderedPaths = allPaths.sort((a, b) => a.length <= b.length ? -1 : 1)
+const orderedPaths = allPaths.sort((a, b) => a.length > b.length ? -1 : 1)
 
-for (const path of allPaths) {
+for (const path of orderedPaths) {
     let node = pathMap
     for (let i = 0; i < path.length; i++) {
         const key = path[i];
-        console.log(key)
         if (node[key] === null) {
             break
         }
@@ -43,4 +44,22 @@ for (const path of allPaths) {
     }
 }
 
-console.log(pathMap)
+// console.log(JSON.stringify(pathMap, null, 2))
+
+const contentCopy = { '$': _.cloneDeep(payload) };
+const content = crop(contentCopy, pathMap)
+console.log(JSON.stringify(content, null, 2))
+
+function crop(obj, keepMap) {
+    if (keepMap === null) {
+        return `Translate(de_DE, '${obj}')`
+    }
+    for (const key of Object.keys(obj)) {
+        if (!(key in keepMap)) {
+            delete obj[key]
+        } else {
+            obj[key] = crop(obj[key], keepMap[key])
+        }
+    }
+    return obj
+}

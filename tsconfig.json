@@ -21,8 +21,8 @@
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
     "emitDecoratorMetadata": true,
-    "sourceMap": true,
-    "types": ["jest"]
+    "sourceMap": true
+    // "types": ["jest"]
   },
   "include": [
     "**/*.ts",
