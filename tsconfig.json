@@ -1,0 +1,37 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "allowJs": true,
+    "strict": false,
+    "outDir": "build",
+    "rootDir": "./",
+    "baseUrl": "./",
+    "lib": ["dom", "es7"],
+    "paths": {
+      "offer/config/*": ["src/config/*"],
+      "offer/lib/*": ["src/lib/*"]
+    },
+    "moduleResolution": "node",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ],
+    "traceResolution": false,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
+    "types": ["jest"]
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.js",
+    "test/**/*.ts",
+    "test/**/*.js"
+  ],
+  "exclude": [
+    "build/**/*",
+    "**/__mocks__/*.ts"
+  ]
+}

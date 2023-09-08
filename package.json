@@ -1,0 +1,30 @@
+{
+  "name": "jsonpath",
+  "version": "1.0.0",
+  "description": "Experiment with extracting and building content with jsonpath notation",
+  "main": "index.ts",
+  "repository": "https://github.com/eddie-iskenderian/jsonpath.git",
+  "author": "eddie-iskenderian <edward.iskenderian@luxuryescapes.com>",
+  "license": "MIT",
+  "dependencies": {
+    "jsonpath": "^1.1.1"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "1.0.4",
+    "@types/jsonpath": "^0.2.0",
+    "eslint": "^8.48.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-jest": "^27.2.3",
+    "eslint-plugin-no-only-tests": "^3.1.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
+  },
+  "scripts": {
+    "build": "tsc -outDir build index.ts",
+    "dev": "yarn build && node build/index.js",
+    "lint": "./node_modules/.bin/eslint index.ts",
+    "lint:fix": "./node_modules/.bin/eslint --fix index.ts"
+  }
+}
